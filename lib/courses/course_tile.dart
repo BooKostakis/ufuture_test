@@ -5,9 +5,10 @@ class CourseTile extends StatelessWidget {
   final String courseName;
   final String courseDescription;
   final String courseTime;
-  final Image courseImage;
+  // final Image courseImage;
   final int coursePrice;
   final int? courseDiscount;
+  final VoidCallback? onTap;
 
   const CourseTile({
     super.key,
@@ -15,18 +16,14 @@ class CourseTile extends StatelessWidget {
     required this.courseName,
     required this.courseDescription,
     required this.courseTime,
-    required this.courseImage,
+    // required this.courseImage,
     required this.coursePrice,
     this.courseDiscount,
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    void onCourseTap() {
-      Navigator.of(context)
-          .pushNamed('/course_list/course_details', arguments: id);
-    }
-
     return Center(
       child: Padding(
         padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
@@ -164,10 +161,10 @@ class CourseTile extends StatelessWidget {
                                 style:
                                     Theme.of(context).textTheme.displayMedium)),
                       ),
-                      Expanded(
-                        child:
-                            SizedBox(width: 55, height: 55, child: courseImage),
-                      ),
+                      // Expanded(
+                      //   child:
+                      //       SizedBox(width: 55, height: 55, child: courseImage),
+                      // ),
                       Container(
                         width: 80,
                         height: 45,
@@ -210,7 +207,7 @@ class CourseTile extends StatelessWidget {
                 color: Colors.transparent,
                 child: InkWell(
                   borderRadius: BorderRadius.circular(10),
-                  onTap: () => onCourseTap(),
+                  onTap: onTap,
                 ),
               ),
             ),

@@ -23,8 +23,14 @@ class App extends StatelessWidget {
         ),
         routes: {
           '/course_list': (context) => CourseListWidgets(),
-          '/course_list/course_details': (context) =>
-              const CourseDetailsWidget(),
+          '/course_list/course_details': (context) {
+            final arguments = ModalRoute.of(context)?.settings.arguments;
+            if (arguments is int) {
+              return CourseDetailsWidget(courseId: arguments);
+            } else {
+              return const CourseDetailsWidget(courseId: 0);
+            }
+          }
         });
   }
 }

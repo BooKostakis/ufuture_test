@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ufuture_test/courses/courses_repository.dart';
 
 class CourseTile extends StatelessWidget {
   final int id;
@@ -23,7 +22,7 @@ class CourseTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    void onCourseTap(int index) {
+    void onCourseTap() {
       Navigator.of(context)
           .pushNamed('/course_list/course_details', arguments: id);
     }
@@ -211,7 +210,7 @@ class CourseTile extends StatelessWidget {
                 color: Colors.transparent,
                 child: InkWell(
                   borderRadius: BorderRadius.circular(10),
-                  onTap: () => onCourseTap(id),
+                  onTap: () => onCourseTap(),
                 ),
               ),
             ),

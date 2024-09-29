@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class CourseTile extends StatelessWidget {
   final int id;
@@ -111,7 +112,7 @@ class CourseTile extends StatelessWidget {
                                 coursePrice <= 0
                                     ? 'Бесплатно'
                                     : courseDiscount != null
-                                        ? '${coursePrice - (coursePrice / 100 * courseDiscount!)} тг'
+                                        ? '${NumberFormat.decimalPattern('ru').format(coursePrice - (coursePrice / 100 * courseDiscount!))} тг'
                                         : '$coursePrice тг',
                                 style: Theme.of(context).textTheme.bodySmall,
                               )

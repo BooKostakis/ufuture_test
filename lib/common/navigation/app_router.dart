@@ -1,6 +1,6 @@
 import 'package:go_router/go_router.dart';
-import 'package:ufuture_test/course_details_screen/course_details_screen.dart';
-import 'package:ufuture_test/home_screen/home_screen_view.dart';
+import 'package:ufuture_test/screens/course_details_screen/course_details_screen.dart';
+import 'package:ufuture_test/screens/home_screen/home_screen_view.dart';
 
 enum AppRoute { home, courseDetails }
 

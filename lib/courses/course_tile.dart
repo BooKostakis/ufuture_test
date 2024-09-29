@@ -5,7 +5,6 @@ class CourseTile extends StatelessWidget {
   final String courseName;
   final String courseDescription;
   final String courseTime;
-  // final Image courseImage;
   final int coursePrice;
   final int? courseDiscount;
   final VoidCallback? onTap;
@@ -16,7 +15,6 @@ class CourseTile extends StatelessWidget {
     required this.courseName,
     required this.courseDescription,
     required this.courseTime,
-    // required this.courseImage,
     required this.coursePrice,
     this.courseDiscount,
     this.onTap,
@@ -30,7 +28,7 @@ class CourseTile extends StatelessWidget {
         child: Stack(
           children: [
             Container(
-              height: 172,
+              height: 165,
               decoration: BoxDecoration(
                   color: Colors.white,
                   border: Border.all(
@@ -55,15 +53,11 @@ class CourseTile extends StatelessWidget {
                         SizedBox(
                             width: 250,
                             child: Text(
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              courseName,
-                              style: const TextStyle(
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.w700,
-                                  fontFamily: 'Roboto',
-                                  color: Color.fromRGBO(52, 166, 222, 1)),
-                            )),
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                courseName,
+                                style:
+                                    Theme.of(context).textTheme.headlineSmall)),
                         const SizedBox(
                           height: 8,
                         ),
@@ -73,11 +67,7 @@ class CourseTile extends StatelessWidget {
                             maxLines: 3,
                             overflow: TextOverflow.ellipsis,
                             courseDescription,
-                            style: const TextStyle(
-                                fontSize: 11.5,
-                                fontWeight: FontWeight.w600,
-                                fontFamily: 'Roboto',
-                                color: Color.fromARGB(255, 72, 77, 80)),
+                            style: Theme.of(context).textTheme.bodyMedium,
                           ),
                         ),
                         const Expanded(
@@ -102,7 +92,7 @@ class CourseTile extends StatelessWidget {
                               ),
                               Text(
                                 courseTime,
-                                style: const TextStyle(fontSize: 12),
+                                style: Theme.of(context).textTheme.bodySmall,
                               ),
                               const SizedBox(
                                 width: 10,
@@ -123,7 +113,7 @@ class CourseTile extends StatelessWidget {
                                     : courseDiscount != null
                                         ? '${coursePrice - (coursePrice / 100 * courseDiscount!)} тг'
                                         : '$coursePrice тг',
-                                style: const TextStyle(fontSize: 12),
+                                style: Theme.of(context).textTheme.bodySmall,
                               )
                             ],
                           ),
@@ -161,10 +151,12 @@ class CourseTile extends StatelessWidget {
                                 style:
                                     Theme.of(context).textTheme.displayMedium)),
                       ),
-                      // Expanded(
-                      //   child:
-                      //       SizedBox(width: 55, height: 55, child: courseImage),
-                      // ),
+                      Expanded(
+                        child: SizedBox(
+                          width: 55,
+                          height: 55,
+                        ),
+                      ),
                       Container(
                         width: 80,
                         height: 45,
@@ -176,8 +168,8 @@ class CourseTile extends StatelessWidget {
                             bottomRight: Radius.circular(0),
                           ),
                           gradient: LinearGradient(
-                            begin: Alignment.bottomCenter, // Начало градиента
-                            end: Alignment.topCenter, // Конец градиента
+                            begin: Alignment.bottomCenter,
+                            end: Alignment.topCenter,
                             colors: [
                               courseDiscount != null
                                   ? const Color.fromRGBO(45, 170, 225, 1)

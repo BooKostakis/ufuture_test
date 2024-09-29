@@ -21,12 +21,15 @@ class HomeScreenView extends StatelessWidget {
         builder: (context, state) {
           if (state.status == CourseStatus.success) {
             return ListView.builder(
+                padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
                 physics: const BouncingScrollPhysics(),
                 itemCount: state.courses?.length,
                 itemBuilder: (BuildContext context, int index) {
                   final course = state.courses?[index];
                   return course == null
-                      ? SizedBox()
+                      ? Center(
+                          child: Text('Не удалось загрузить курсы.'),
+                        )
                       : CourseTile(
                           onTap: () {
                             context.read<CourseCubit>().selectCourse(course);
@@ -42,7 +45,21 @@ class HomeScreenView extends StatelessWidget {
                 });
           }
           return Center(
-            child: CircularProgressIndicator(), // РАЗОБРАТЬСЯ!
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircularProgressIndicator(
+                    strokeWidth: 6,
+                    color: Theme.of(context).colorScheme.tertiary),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  'Подгружаем свежие курсы...',
+                  style: Theme.of(context).textTheme.bodyLarge,
+                )
+              ],
+            ),
           );
         },
       ),
